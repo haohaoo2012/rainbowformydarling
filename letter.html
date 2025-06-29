@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lá Thư Dễ Thương</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Loading screen with progress bar -->
+  <div class="loading-screen" id="loadingScreen">
+    <h2 style="color: #ff69b4;">Đợi xíu ddeeee, đừng vội... 💌</h2>
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Letter content -->
+  <div class="letter" id="letter" style="display: none">
+    <h1>💌 Gửi Bé Huyền 💌</h1>
+    <p>
+     Xin chào cô bé,<br>
+     Anh đã hái được một chiếc cầu vồng đẹp nhất tặng cho em nè<br>
+     Hết dỗi anh nhaaaa...<br>
+     Mãi iuuu kkkkkkkk 😚💖
+    </p>
+    <button onclick="goToRainbow()">Mở tui ra đi 🌈</button>
+  </div>
+
+  <script>
+    let progress = 0;
+    const bar = document.getElementById("progressBar");
+    const screen = document.getElementById("loadingScreen");
+    const letter = document.getElementById("letter");
+
+    const interval = setInterval(() => {
+      progress += 1;
+      bar.style.width = progress + "%";
+      if (progress >= 100) {
+        clearInterval(interval);
+        screen.style.display = "none";
+        letter.style.display = "flex";
+      }
+    }, 30);
+
+    function goToRainbow() {
+      window.location.href = "rainbow.html";
+    }
+  </script>
+</body>
+</html>

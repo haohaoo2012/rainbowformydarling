@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="loading-screen">
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p>Đang chuẩn bị điều bất ngờ cho em...</p>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById("progressBar");
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 1;
+      progressBar.style.width = progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        window.location.href = "rainbow.html"; // Chuyển sau khi xong
+      }
+    }, 30);
+  </script>
+</body>
+</html>

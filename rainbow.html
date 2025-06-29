@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌈 Cầu Vồng Tặng Em 🌈</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .message-box {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 1rem;
+      max-width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .message-boy {
+      bottom: 250px;
+       right: 1090px;
+    }
+
+    .message-girl {
+      bottom: 250px;
+      right: 780px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <img src="sun.png" alt="Sun" class="sun" />
+    <img src="cloud.png" alt="Cloud" class="cloud cloud0" />
+    <img src="cloud.png" alt="Cloud" class="cloud cloud1" />
+    <img src="cloud.png" alt="Cloud" class="cloud cloud2" />
+     <img src="cloud.png" alt="Cloud" class="cloud cloud3" />
+      <img src="cloud.png" alt="Cloud" class="cloud cloud4" />
+    <img src="ra.png" alt="Rainbow" class="rainbow" id="rainbow" />
+    <img src="boy.png" alt="Boy" class="boy" id="boy" />
+    <img src="girl.png" alt="Girl" class="girl" />
+    <img src="bird.png" alt="Bird" class="bird" />
+  <!-- Tulip bên trái -->
+<img src="tulip.png" alt="Tulip" class="tulip tulip-left1" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-left2" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-left3" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-left4" />
+
+<!-- Tulip bên phải -->
+<img src="tulip.png" alt="Tulip" class="tulip tulip-right1" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-right2" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-right3" />
+<img src="tulip.png" alt="Tulip" class="tulip tulip-right4" />
+
+
+
+
+    <div class="message" id="message" style="display: none">Anh tặng em cả bầu trời cầu vồng to bự lunnn 💝</div>
+    <div class="message-box message-girl" id="msgGirl"></div>
+    <div class="message-box message-boy" id="msgBoy"></div>
+  </div>
+  <div class="rain-container" id="rainContainer"></div>
+
+
+ <script>
+  const boy = document.getElementById('boy');
+  const rainbow = document.getElementById('rainbow');
+  const message = document.getElementById('message');
+  const msgGirl = document.getElementById('msgGirl');
+  const msgBoy = document.getElementById('msgBoy');
+
+  const dialogues = [
+    { id: 'msgGirl', text: ' Em giận anh rồi 😡' },
+    { id: 'msgBoy', text: 'Ơ kè... Sao em lại giận anh rồi, cho anh chuộc lỗi đi mờ 😥' },
+    { id: 'msgGirl', text: 'Bây giờ, anh lên trời lấy xuống cho em 1 cái cầu vồng thiệt to đẹp, thì em sẽ hết giận anh.' },
+    { id: 'msgBoy', text: 'Đợi anh......' }
+  ];
+
+  function showDialogue(index = 0) {
+    if (index >= dialogues.length) {
+      // ✨ Step 1: Boy bay lên bên cạnh cầu vồng
+      setTimeout(() => {
+        boy.style.bottom = '480px';
+        boy.style.left = '300px';
+      }, 1000);
+
+      // ✨ Step 2: Boy và rainbow cùng hạ xuống cạnh cô gái
+      setTimeout(() => {
+        boy.style.bottom = '20px';
+       boy.style.left = '700px';
+
+        rainbow.style.top = '640px';
+        rainbow.style.left = '840px';
+      }, 4000);
+
+      // ✨ Step 3: Hiện lời thoại tặng cầu vồng
+      setTimeout(() => {
+        message.style.display = 'block';
+      }, 6000);
+
+      return;
+    }
+
+    const current = dialogues[index];
+    const element = document.getElementById(current.id);
+    element.innerText = current.text;
+    element.style.opacity = 1;
+
+    setTimeout(() => {
+      element.style.opacity = 0;
+      setTimeout(() => showDialogue(index + 1), 1000);
+    }, 3000);
+  }
+ function createRaindrop() {
+  const drop = document.createElement('div');
+  drop.classList.add('drop');
+  drop.style.left = `${Math.random() * window.innerWidth}px`;
+  drop.style.top = `${Math.random() * -100}px`;
+  drop.style.animationDuration = `${1 + Math.random()}s`;
+  drop.style.opacity = 0.6 + Math.random() * 0.4;
+  drop.style.height = `${10 + Math.random() * 10}px`;
+  rainContainer.appendChild(drop);
+  setTimeout(() => drop.remove(), 3000);
+}
+
+function spawnBird() {
+    const bird = document.createElement('img');
+    bird.src = 'bird.png';
+    bird.classList.add('bird');
+    bird.style.top = `${80 + Math.random() * 200}px`;
+    bird.style.animationDuration = `${12 + Math.random() * 4}s`;
+    document.querySelector('.sky').appendChild(bird);
+
+    setTimeout(() => bird.remove(), 16000);
+  }
+
+window.onload = function () {
+  showDialogue();
+  setInterval(createRaindrop, 60);
+setInterval(spawnBird, 10000);
+};
+
+</script>
+
+
+</body>
+
+</html>

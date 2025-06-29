@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhập mật khẩu</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 240, 250, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #ff69b4;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #errorMsg {
+      color: red;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="password-container">
+    <h2>🔐 Mời em nhập mật khẩu để được xem cầu vồng nha</h2>
+    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu" />
+    <button onclick="checkPassword()">Vào thư 💌</button>
+    <p id="errorMsg"></p>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p>Nghe nhạc chill chill, đợi xíu nhen... 😚</p>
+  </div>
+
+  <!-- Music toggle -->
+  <button onclick="toggleMusic()" style="position: absolute; top: 20px; right: 20px; z-index: 10;">
+    🔊 Bật/Tắt nhạc
+  </button>
+
+    <iframe src="music.html" style="display:none;" allow="autoplay" id="musicFrame"></iframe>
+
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const error = document.getElementById("errorMsg");
+      const overlay = document.getElementById("loadingOverlay");
+
+      if (input === "myhuyen") {
+        error.textContent = "";
+        overlay.style.display = "flex";
+        setTimeout(() => {
+          window.location.href = "letter.html";
+        }, 2500);
+      } else {
+        error.textContent = "Sai mật khẩu rồi 😢";
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+</body>
+</html>
